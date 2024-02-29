@@ -225,3 +225,6 @@ w
 G.idea/sonarlint/issuestore/8/3/83f1483a1e662a3f7c6aa15079d734fe91fc4e59,0\3\031891e7aab5ac55f35d5967bdedd5d653bb6cfe
 Å
 Q.idea/sonarlint/securityhotspotstore/0/2/02f1cd16e4624bca96f024e6df1effa8e69d1e2a,c\1\c16b84103cb7f17a89fc18810a68f315b3113c2d
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
