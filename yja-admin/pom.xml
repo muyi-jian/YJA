@@ -5,11 +5,11 @@
     <parent>
         <groupId>com.yja</groupId>
         <artifactId>YJA</artifactId>
-        <version>1.0-SNAPSHOT</version>
+       <version>1.0.0</version>
     </parent>
     <groupId>com.yj</groupId>
     <artifactId>yja-admin</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+   <version>1.0.0</version>
     <name>yja-admin</name>
     <description>yja-admin</description>
     <properties>
@@ -17,8 +17,9 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <groupId>com.yj</groupId>
+            <artifactId>yja-common</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <dependency>

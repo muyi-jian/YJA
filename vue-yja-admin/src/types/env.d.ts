@@ -24,7 +24,6 @@ interface ImportMetaEnv {
    * 后端服务地址
    */
   VITE_APP_SERVICE_API: string;
-
 }
 
 interface ImportMeta {
