@@ -7,10 +7,12 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 
 import path from "path";
 
 const pathSrc = path.resolve(__dirname, "src");
+import UnoCSS from "unocss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -19,6 +21,26 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [
       vue(),
+      UnoCSS({
+        hmrTopLevelAwait: false
+      }),
+      createSvgIconsPlugin({
+        // 指定需要缓存的图标文件夹
+        iconDirs: [path.resolve(pathSrc, "assets/icons")],
+        // 指定symbolId格式
+        symbolId: "icon-[dir]-[name]"
+        /**
+         * 自定义插入位置 'body-last' | 'body-first'
+         * @default: body-last
+         */
+        // inject: "body-last",
+
+        /**
+         * custom dom id
+         * @default: __svg__icons__dom__
+         */
+        // customDomId: "__svg__icons__dom__"
+      }),
       // eslintPlugin({ lintOnStart: true, cache: false }), // 项目运行时进行eslint检查
       eslintPlugin({
         include: ["src/**/*.js", "src/**/*.vue", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
@@ -30,7 +52,8 @@ export default defineConfig(({ mode }) => {
         imports: ["vue"],
         eslintrc: {
           enabled: true, // 是否自动生成 eslint 规则，建议生成之后设置 false
-          filepath: "./.eslintrc-auto-import.json" // 指定自动导入函数 eslint 规则的文件
+          filepath: "./.eslintrc-auto-import.json", // 指定自动导入函数 eslint 规则的文件
+          globalsPropValue: true
         },
         resolvers: [
           ElementPlusResolver(),
@@ -82,7 +105,7 @@ export default defineConfig(({ mode }) => {
         //define global scss variable
         scss: {
           javascriptEnabled: true,
-          additionalData: '@use "@/styles/variables.scss" as *;'
+          additionalData: '@use "@/assets/styles/common/variables.scss" as *;'
         }
       }
     }

@@ -1,7 +1,10 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import "@/assets/style/common.scss";
+import "@/assets/styles/common/index.scss";
+import "uno.css";
 
+// 本地SVG图标
+import "virtual:svg-icons-register";
 const app = createApp(App);
 // 导入pinia
 import { createPinia } from "pinia";

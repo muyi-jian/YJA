@@ -1,7 +1,7 @@
 <template>
   <div class="common_layout">
     <el-container>
-      <el-aside width="200px"><Aside /></el-aside>
+      <el-aside :class="classObj"><Aside /></el-aside>
       <div class="content">
         <div class="header-wrapper">
           <el-header><Header /></el-header>
@@ -13,7 +13,24 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useAppStore } from "@/store/modules/app.ts";
+import { useSettingsStore } from "@/store/modules/settings.ts";
+
+const appStore = useAppStore();
+const settingsStore = useSettingsStore();
+
+const layout = computed(() => settingsStore.layout); // 布局模式 left top mix
+
+const classObj = computed(() => ({
+  hideSidebar: !appStore.sidebar.opened,
+  openSidebar: appStore.sidebar.opened,
+  mobile: appStore.device === "mobile",
+  "layout-left": layout.value === "left",
+  "layout-top": layout.value === "top",
+  "layout-mix": layout.value === "mix"
+}));
+</script>
 
 <style lang="scss" scoped>
 .common_layout {
@@ -30,9 +47,15 @@
   .el-aside {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    background-color: #6565e4;
+    background-color: #304156;
+    width: $sidebar-width;
+    overflow: hidden;
+    transition: width 0.28s;
   }
-
+  .hideSidebar {
+    // left: $sidebar-width-collapsed;
+    width: $sidebar-width-collapsed;
+  }
   .content {
     flex: 1;
     display: flex;
@@ -43,9 +66,13 @@
       position: sticky;
       top: 0;
       z-index: 1; /* 确保 header 在其他元素之上 */
-      background-color: #ccccff;
+      // background-color: #ccccff;
       border-top-right-radius: 8px;
-      border-bottom: 1px solid #c9c6c6;
+      // border-bottom: 1px solid #c9c6c6;
+    }
+    .el-header {
+      --el-header-padding: 0 !important;
+      --el-header-height: 0 !important;
     }
 
     .el-main {
@@ -53,7 +80,7 @@
       flex: 1;
       overflow-y: auto;
       border-bottom-right-radius: 8px;
-      background-color: #ffcccc;
+      // background-color: #ffcccc;
     }
   }
 }
