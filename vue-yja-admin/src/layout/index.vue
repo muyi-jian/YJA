@@ -84,4 +84,42 @@ const classObj = computed(() => ({
     }
   }
 }
+.hideSidebar {
+  .fixed-header {
+    left: $sidebar-width-collapsed;
+    width: calc(100% - $sidebar-width-collapsed);
+  }
+
+  .main-container {
+    margin-left: $sidebar-width-collapsed;
+  }
+
+  &.layout-top {
+    .fixed-header {
+      left: 0;
+      width: 100%;
+    }
+
+    .main-container {
+      margin-left: 0;
+    }
+  }
+
+  &.layout-mix {
+    .fixed-header {
+      left: $sidebar-width-collapsed;
+      width: calc(100% - $sidebar-width-collapsed);
+    }
+
+    .sidebar-container {
+      width: 100% !important;
+    }
+
+    .mix-container {
+      .mix-container__left {
+        width: $sidebar-width-collapsed;
+      }
+    }
+  }
+}
 </style>

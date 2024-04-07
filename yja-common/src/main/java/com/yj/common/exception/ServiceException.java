@@ -1,6 +1,6 @@
 package com.yj.common.exception;
 
-import com.yj.common.enums.ResponseEnum;
+import com.yj.common.resp.IResultCode;
 import lombok.Data;
 
 /**
@@ -12,24 +12,23 @@ import lombok.Data;
 @Data
 public class ServiceException extends RuntimeException {
 
-    private Integer code;
 
-    public ServiceException() {
-        super();
+    public IResultCode resultCode;
+
+    public ServiceException(IResultCode errorCode) {
+        super(errorCode.getMessage());
+        this.resultCode = errorCode;
+    }
+
+    public ServiceException(String message, Throwable cause){
+        super(message, cause);
+    }
+
+    public ServiceException(Throwable cause){
+        super(cause);
     }
 
     public ServiceException(String message) {
         super(message);
     }
-
-    public ServiceException(Integer code, String message) {
-        super(message);
-        this.code = code;
-    }
-
-    public ServiceException(ResponseEnum responseStatusEnum) {
-        super(responseStatusEnum.getMessage());
-        this.code = responseStatusEnum.getCode();
-    }
-
 }

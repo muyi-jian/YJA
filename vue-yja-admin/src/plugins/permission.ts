@@ -1,4 +1,6 @@
 import router from "@/router";
+import { useUserStore } from "@/store/modules/user";
+import { usePermissionStore } from "@/store/modules/permission";
 
 export function setupPermission() {
   // 白名单路由
@@ -15,6 +17,34 @@ export function setupPermission() {
         // NProgress.done();
       } else {
         console.log("进行登录处理...");
+        const userStore = useUserStore();
+        const hasRoles = userStore.user.roles && userStore.user.roles.length > 0;
+        if (hasRoles) {
+          // 未匹配到任何路由，跳转404
+          if (to.matched.length === 0) {
+            from.name ? next({ name: from.name }) : next("/404");
+          } else {
+            next();
+          }
+        } else {
+          const permissionStore = usePermissionStore();
+          try {
+            // 获取角色信息
+            const { roles } = await userStore.getUserInfo();
+            // 获取用户权限
+            const accessRoutes = await permissionStore.generateRoutes(roles);
+            // 动态添加路由
+            accessRoutes.forEach((route) => {
+              router.addRoute(route);
+            });
+            next({ ...to, replace: true });
+          } catch (error) {
+            // 移除 token 并跳转登录页
+            await userStore.resetToken();
+            next(`/login?redirect=${to.path}`);
+            // NProgress.done();
+          }
+        }
         next();
       }
     } else {

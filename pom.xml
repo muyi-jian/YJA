@@ -50,6 +50,16 @@
         <spring-boot-dependencies.version>3.2.2</spring-boot-dependencies.version>
         <mybatis-plugin.version>3.5.5</mybatis-plugin.version>
         <fasterxml.jackson.version>2.15.2</fasterxml.jackson.version>
+        <knife4j.version>4.4.0</knife4j.version>
+        <mysql.version>8.0.30</mysql.version>
+        <druid.version>1.2.16</druid.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <easyexcel.version>3.2.1</easyexcel.version>
+        <!-- redisson 分布式锁 -->
+        <redisson.version>3.24.3</redisson.version>
+        <jwt.version>4.3.0</jwt.version>
+        <alibaba.fastjson.version>2.0.8</alibaba.fastjson.version>
+        <fasterxml.jackson.version>2.13.0</fasterxml.jackson.version>
     </properties>
 
     <dependencyManagement>

@@ -11,6 +11,11 @@ $api.request.interceptors.request.use((config: any) => {
   console.log("请求拦截器");
   console.log(config.headers);
   const headers = config.headers || {};
+  const accessToken = localStorage.getItem("token");
+  console.log("interceptors-accessToken====" + accessToken);
+  if (accessToken) {
+    headers["Authorization"] = accessToken;
+  }
   // 这个地方可以自定义请求头
   config.headers = {
     ...headers,

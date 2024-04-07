@@ -1,7 +1,12 @@
-/* 用户信息接口返回值类型 */
-export interface UserInfoRes {
-  id: string;
-  username: string;
-  avatar: string;
-  description: string;
+/**
+ * 登录用户信息
+ */
+export interface UserInfo {
+  userId?: number;
+  username?: string;
+  nickname?: string;
+  avatar?: string;
+  roles: string[];
+  perms: string[];
+  description?: string;
 }

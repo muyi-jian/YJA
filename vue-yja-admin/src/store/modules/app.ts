@@ -9,6 +9,7 @@ export const useAppStore = defineStore("app", () => {
     opened: sidebarStatus.value !== "closed",
     withoutAnimation: false
   });
+
   // actions
   function toggleSidebar() {
     sidebar.opened = !sidebar.opened;
@@ -18,6 +19,7 @@ export const useAppStore = defineStore("app", () => {
       sidebarStatus.value = "closed";
     }
   }
+
   return {
     sidebar,
     toggleSidebar,

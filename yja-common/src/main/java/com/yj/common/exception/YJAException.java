@@ -1,7 +1,8 @@
 package com.yj.common.exception;
 
-import com.yj.common.enums.ResponseEnum;
+import com.yj.common.resp.IResultCode;
 import lombok.Data;
+import lombok.Getter;
 
 /**
  * 内部错误(Internal Server Error)
@@ -12,26 +13,28 @@ import lombok.Data;
  * 当客户端请求AWS服务时，若处于该场景将以该错误码返回到ResponseObject数据结构
  */
 @Data
+@Getter
 public class YJAException extends RuntimeException {
 
-    private Integer code;
+    public IResultCode resultCode;
 
-    public YJAException() {
-        super();
+    public YJAException(IResultCode errorCode) {
+        super(errorCode.getMessage());
+        this.resultCode = errorCode;
+    }
+
+
+
+    public YJAException(String message, Throwable cause){
+        super(message, cause);
+    }
+
+    public YJAException(Throwable cause){
+        super(cause);
     }
 
     public YJAException(String message) {
         super(message);
-    }
-
-    public YJAException(Integer code, String message) {
-        super(message);
-        this.code = code;
-    }
-
-    public YJAException(ResponseEnum responseStatusEnum) {
-        super(responseStatusEnum.getMessage());
-        this.code = responseStatusEnum.getCode();
     }
 
 }

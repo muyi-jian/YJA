@@ -2,21 +2,26 @@
 export const APIs = {
   // 后台api
   adminApi: {
-    login: "/admin/login",
-    logout: "/admin/logout",
-    getUserInfo: "/admin/getUserInfo",
-    getRoutes: "/admin/getRoutes",
-    getMenus: "/admin/getMenus",
-    getPermissions: "/admin/getPermissions",
-    getRoles: "/admin/getRoles",
-    getUsers: "/admin/getUsers",
-    getUser: "/admin/getUser",
-    addUser: "/admin/addUser",
-    editUser: "/admin/editUser"
+    login: "/api/admin/login",
+    logout: "/api/admin/logout",
+    getRoutes: "/api/admin/getRoutes",
+    getMenus: "/api/admin/getMenus",
+    getPermissions: "/api/admin/getPermissions",
+    getRoles: "/api/admin/getRoles",
+    getUsers: "/api/admin/getUsers",
+    getUser: "/api/admin/getUser",
+    addUser: "/api/admin/addUser",
+    editUser: "/api/admin/editUser"
+  },
+  userApi: {
+    getUserInfo: "/api/users/me"
   },
   // 前台Api
   webApi: {
-    login: "/web/login",
+    login: "/api/web/login",
     getUniversity: "/getUniversity"
+  },
+  menuApi: {
+    getListRoutes: "/api/menus/routes"
   }
 };

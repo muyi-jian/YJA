@@ -21,7 +21,12 @@ function createRequestInstance(url: string): AxiosInstance {
   // 响应拦截器
   instance.interceptors.response.use(
     async (res) => {
-      return res;
+      const { code, message } = res.data;
+      if (code === "000000") {
+        return res.data;
+      }
+
+      return Promise.reject(new Error(message || "Error"));
     },
     async (err) => {
       err = await handleError(err);

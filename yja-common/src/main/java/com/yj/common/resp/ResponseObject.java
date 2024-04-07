@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Data
 public class ResponseObject<T> implements Serializable {
 
-    private Integer code;
+    private String code;
 
     private String message;
 
@@ -26,19 +26,19 @@ public class ResponseObject<T> implements Serializable {
 
     }
 
-    public ResponseObject(Integer code, String message) {
+    public ResponseObject(String code, String message) {
 
         this.code = code;
         this.message = message;
     }
 
-    public ResponseObject(Integer code, T data) {
+    public ResponseObject(String code, T data) {
 
         this.code = code;
         this.data = data;
     }
 
-    public ResponseObject(Integer code, String message, T data) {
+    public ResponseObject(String code, String message, T data) {
 
         this.code = code;
         this.message = message;
@@ -79,7 +79,7 @@ public class ResponseObject<T> implements Serializable {
         }
         return new ResponseObject<T>(resultStatus, data);
     }
-    public static <T> ResponseObject<T> success(Integer code, String message) {
+    public static <T> ResponseObject<T> success(String code, String message) {
 
         return new ResponseObject<T>(code, message);
     }
@@ -98,6 +98,12 @@ public class ResponseObject<T> implements Serializable {
 
         return failure(resultStatus, null);
     }
+    /**
+     * 业务异常返回业务代码,描述和返回的参数
+     */
+    public static <T> ResponseObject<T> failed(IResultCode resultCode) {
+        return failure(resultCode.getCode(), resultCode.getMessage(), null);
+    }
 
     /**
      * 业务异常返回业务代码,描述和返回的参数
@@ -111,8 +117,13 @@ public class ResponseObject<T> implements Serializable {
         return new ResponseObject<T>(resultStatus, data);
     }
 
-    public static <T> ResponseObject<T> failure(Integer code, String message) {
+    public static <T> ResponseObject<T> failure(String code, String message) {
 
         return new ResponseObject<T>(code, message);
+    }
+
+    public static <T> ResponseObject<T> failure(String code, String message, T data) {
+
+        return new ResponseObject<T>(code, message, data);
     }
 }
