@@ -2,6 +2,7 @@ package com.yj.admin.controller;
 
 import com.yj.admin.service.AuthService;
 import com.yj.common.annotation.ResponseResultBody;
+import com.yj.core.model.dto.CaptchaResult;
 import com.yj.core.model.dto.LoginResult;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "认证中心")
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/auth")
 @ResponseResultBody
 public class AuthController {
     @Autowired
@@ -34,6 +35,11 @@ public class AuthController {
         return authService.login(username, password);
     }
 
+    @GetMapping("/captcha")
+    public CaptchaResult captcha(){
+        System.out.println("authService.captcha()=="+authService.captcha());
+        return authService.captcha();
+    }
     @GetMapping(value = "/test")
     public String test(){
         int i = 10/0;

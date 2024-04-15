@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from "vue-router";
 import { constantRoutes } from "@/router";
-import { defineStore } from "pinia";
+import { store } from "@/store";
 import { listRoutes } from "@/api/menu";
 
 const modules = import.meta.glob("../../views/**/**.vue");
@@ -87,7 +87,6 @@ export const usePermissionStore = defineStore("permission", () => {
       // 接口获取所有路由
       listRoutes()
         .then(({ data: asyncRoutes }) => {
-          console.info("asyncRoutes", asyncRoutes);
           // 根据角色获取有访问权限的路由
           const accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
           setRoutes(accessedRoutes);
@@ -113,11 +112,11 @@ export const usePermissionStore = defineStore("permission", () => {
     setRoutes,
     generateRoutes,
     mixLeftMenus,
-    setMixLeftMenus
+    setMixLeftMenus,
   };
 });
 
-// // 非setup
-// export function usePermissionStoreHook() {
-//   return usePermissionStore(store);
-// }
+// 非setup
+export function usePermissionStoreHook() {
+  return usePermissionStore(store);
+}

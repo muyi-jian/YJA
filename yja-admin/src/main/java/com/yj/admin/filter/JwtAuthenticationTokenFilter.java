@@ -26,8 +26,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         // 获取token
 
         String token = request.getHeader(HttpHeaders.AUTHORIZATION);
-        System.out.println("token============="+token);
-
+        System.out.println("token:"+token);
         try {
             if (StrUtil.isNotBlank(token)) {
                 token= JWTutil.parseToken(token);
@@ -39,7 +38,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             ResponseUtils.writeErrMsg(response, (ResponseEnum) ex.getResultCode());
             return;
         }
-
         filterChain.doFilter(request,response);
     }
 }

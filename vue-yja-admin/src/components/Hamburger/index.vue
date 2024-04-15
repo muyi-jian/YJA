@@ -1,6 +1,13 @@
 <template>
-  <div class="px-[15px] flex items-center justify-center color-[var(--el-text-color-regular)]" @click="toggleClick">
-    <svg-icon class="hamburger" :class="{ 'is-active': isActive }" icon-class="indent-decrease" />
+  <div
+    class="px-[15px] flex items-center justify-center color-[var(--el-text-color-regular)]"
+    @click="toggleClick"
+  >
+    <svg-icon
+      class="hamburger"
+      :class="{ 'is-active': isActive }"
+      icon-class="indent-decrease"
+    />
   </div>
 </template>
 <script setup lang="ts">
@@ -8,8 +15,8 @@ defineProps({
   isActive: {
     required: true,
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
 const emit = defineEmits(["toggleClick"]);

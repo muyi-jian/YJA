@@ -1,6 +1,7 @@
 package com.yj.admin.config;
 
 
+import com.yj.admin.filter.CaptchaValidationFilter;
 import com.yj.admin.filter.JwtAuthenticationTokenFilter;
 import com.yj.admin.security.MyAccessDeniedHandler;
 import com.yj.admin.security.MyAuthenticationEntryPoint;
@@ -28,24 +29,10 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        //http.authorizeHttpRequests(authorizeHttpRequests ->
-        //        authorizeHttpRequests
-        //                .requestMatchers("/index").hasAnyAuthority("admin:api", "user:api")
-        //                .requestMatchers("/admin").hasAuthority("admin:api")
-        //                .requestMatchers("/user").hasAuthority("user:api")
-        //                .requestMatchers("/register").permitAll()
-        //                .requestMatchers("/user/save").permitAll()
-        //                .requestMatchers("/toLogin").permitAll()
-        //                .anyRequest().authenticated()
-        //
-        //);
-
         http.authorizeHttpRequests(requestMatcherRegistry ->
                 requestMatcherRegistry.requestMatchers(SecurityConstants.LOGIN_PATH).permitAll()
                         .anyRequest().authenticated()
         );
-        // 登陆前获取token并校验
-        http.addFilterBefore(new JwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         http.exceptionHandling(httpSecurityExceptionHandlingConfigurer ->
                 httpSecurityExceptionHandlingConfigurer
@@ -58,6 +45,12 @@ public class SecurityConfig {
         http.csrf(c -> c.disable());
 
         http.cors(e -> e.disable());
+        // 验证码校验过滤器
+        http.addFilterBefore(new CaptchaValidationFilter(), UsernamePasswordAuthenticationFilter.class);
+
+        // 登陆前获取token并校验
+        http.addFilterBefore(new JwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 
@@ -68,7 +61,7 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
                 .requestMatchers(
-                        "/api/v1/admin/captcha",
+                        "/api/auth/captcha",
                         "/webjars/**",
                         "/doc.html",
                         "/swagger-resources/**",

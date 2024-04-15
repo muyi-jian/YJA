@@ -1,31 +1,45 @@
-import $api from "@/api/service/webRequest";
-import { APIs } from "@/api/service/apiList";
-import type { LoginData, LoginRes } from "./types";
+import request from "@/utils/request";
+import { AxiosPromise } from "axios";
+import { CaptchaResult, LoginData, LoginResult } from "./types";
 
 /**
- * 登录
+ * 登录API
+ *
+ * @param data {LoginData}
+ * @returns
  */
-export function loginApi(data: LoginData) {
-  console.log("loginApi===============");
+export function loginApi(data: LoginData): AxiosPromise<LoginResult> {
   const formData = new FormData();
   formData.append("username", data.username);
   formData.append("password", data.password);
-  // formData.append("captchaKey", data.captchaKey || "");
-  // formData.append("captchaCode", data.captchaCode || "");
-  const config = {
+  formData.append("captchaKey", data.captchaKey || "");
+  formData.append("captchaCode", data.captchaCode || "");
+  return request({
+    url: "/api/auth/login",
+    method: "post",
+    data: formData,
     headers: {
-      "Content-Type": "multipart/form-data"
-      // 您可以在这里添加其他需要的头信息
-    }
-    // 这里还可以添加其他Axios配置，比如timeout, params等
-  };
-
-  return $api.post<LoginRes>(APIs.adminApi.login, data, config);
+      "Content-Type": "multipart/form-data",
+    },
+  });
 }
 
 /**
- * 登出
+ * 注销API
  */
 export function logoutApi() {
-  return $api.delete<LoginRes>(APIs.adminApi.logout);
+  return request({
+    url: "/api/auth/logout",
+    method: "delete",
+  });
+}
+
+/**
+ * 获取验证码
+ */
+export function getCaptchaApi(): AxiosPromise<CaptchaResult> {
+  return request({
+    url: "/api/auth/captcha",
+    method: "get",
+  });
 }

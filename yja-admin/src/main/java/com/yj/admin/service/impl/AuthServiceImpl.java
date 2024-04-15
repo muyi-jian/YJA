@@ -1,7 +1,9 @@
 package com.yj.admin.service.impl;
 
 import com.yj.admin.service.AuthService;
+import com.yj.admin.util.CaptchaUtil;
 import com.yj.admin.util.JWTutil;
+import com.yj.core.model.dto.CaptchaResult;
 import com.yj.core.model.dto.LoginResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +42,11 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public void logout() {
 
+    }
+
+    @Override
+    public CaptchaResult captcha() {
+        CaptchaResult captchaResult =  CaptchaUtil.generateVerifyCode();
+        return captchaResult;
     }
 }

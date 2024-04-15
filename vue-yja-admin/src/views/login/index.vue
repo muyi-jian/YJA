@@ -1,154 +1,298 @@
 <template>
   <div class="login-container">
-    <!--设置卡片头部-->
-    <!--通过header设置插槽，插槽最大的特点就是可以将html以及文本都放进去-->
-    <!--插槽其实就是预留了位置-->
-    <el-card class="login-card">
-      <template #header>
-        <div class="login-card-header">
-          <span>用户登录</span>
-        </div>
-      </template>
-      <!--卡片的body  表单里面的数据全部都是对象里面的数据-->
-      <!-- ref设置后，在script中能使用this.$refs拿到对应的对象，用于验证和reset表单数据 -->
-      <el-form :model="loginData" :rules="loginDataRules" ref="loginFormRef">
-        <!--这里的prop要跟rules里面的规则名对其用来校验规则-->
+    <!-- 顶部 -->
+    <div class="absolute-lt flex-x-end p-3 w-full">
+      <el-switch
+        v-model="isDark"
+        inline-prompt
+        :active-icon="Moon"
+        :inactive-icon="Sunny"
+        @change="toggleTheme"
+      />
+      <lang-select class="ml-2 cursor-pointer" />
+    </div>
+    <!-- 登录表单 -->
+    <el-card class="!border-none !bg-transparent !rounded-4% w-100 <sm:w-85">
+      <div class="text-center relative">
+        <h2>{{ defaultSettings.title }}</h2>
+        <el-tag class="ml-2 absolute-rt">{{ defaultSettings.version }}</el-tag>
+      </div>
+
+      <el-form
+        ref="loginFormRef"
+        :model="loginData"
+        :rules="loginRules"
+        class="login-form"
+      >
+        <!-- 用户名 -->
         <el-form-item prop="username">
-          <!--refix-icon="UserFilled"图标做了全局引入，这里就不需要引入了-->
-          <!--v-model.trim 其实双向绑定了loginData.username  trim其实就是去掉空格-->
-          <!--placeholder 默认文字提示   placeholde 清除按钮-->
-          <el-input
-            prefix-icon="UserFilled"
-            v-model.trim="loginData.username"
-            maxlength="32"
-            placeholder="请输入账号"
-            clearable
-          >
-          </el-input>
+          <div class="flex-y-center w-full">
+            <svg-icon icon-class="user" class="mx-2" />
+            <el-input
+              ref="username"
+              v-model="loginData.username"
+              :placeholder="$t('login.username')"
+              name="username"
+              size="large"
+              class="h-[48px]"
+            />
+          </div>
         </el-form-item>
 
-        <el-form-item prop="password">
-          <el-input
-            type="password"
-            prefix-icon="Lock"
-            v-model.trim="loginData.password"
-            maxlength="16"
-            placeholder="请输入密码"
-            clearable
-          >
-          </el-input>
+        <!-- 密码 -->
+        <el-tooltip
+          :visible="isCapslock"
+          :content="$t('login.capsLock')"
+          placement="right"
+        >
+          <el-form-item prop="password">
+            <div class="flex-y-center w-full">
+              <svg-icon icon-class="lock" class="mx-2" />
+              <el-input
+                v-model="loginData.password"
+                :placeholder="$t('login.password')"
+                type="password"
+                name="password"
+                @keyup="checkCapslock"
+                @keyup.enter="handleLogin"
+                size="large"
+                class="h-[48px] pr-2"
+                show-password
+              />
+            </div>
+          </el-form-item>
+        </el-tooltip>
+
+        <!-- 验证码 -->
+        <el-form-item prop="captchaCode">
+          <div class="flex-y-center w-full">
+            <svg-icon icon-class="captcha" class="mx-2" />
+            <el-input
+              v-model="loginData.captchaCode"
+              auto-complete="off"
+              size="large"
+              class="flex-1"
+              :placeholder="$t('login.captchaCode')"
+              @keyup.enter="handleLogin"
+            />
+
+            <el-image
+              @click="getCaptcha"
+              :src="captchaBase64"
+              class="rounded-tr-md rounded-br-md cursor-pointer h-[48px]"
+            />
+          </div>
         </el-form-item>
-        <!--这里面不需要加校验 因为只是一个按钮-->
-        <!--style="width: 100%;border-radius: 5px;" 这里设置的样式 圆角-->
-        <el-form-item>
-          <el-button
-            type="primary"
-            style="width: 100%; border-radius: 5px"
-            :loading="loginLoading"
-            @click="handleLogin()"
-            >登入
-          </el-button>
-        </el-form-item>
+
+        <!-- 登录按钮 -->
+        <el-button
+          :loading="loading"
+          type="primary"
+          size="large"
+          class="w-full"
+          @click.prevent="handleLogin"
+          >{{ $t("login.login") }}
+        </el-button>
+
+        <!-- 账号密码提示 -->
+        <div class="mt-10 text-sm">
+          <span>{{ $t("login.username") }}: admin</span>
+          <span class="ml-4"> {{ $t("login.password") }}: 123456</span>
+        </div>
       </el-form>
     </el-card>
+
+    <!-- ICP备案 -->
+    <div class="absolute bottom-1 text-[10px] text-center" v-show="icpVisible">
+      <p>
+        Copyright © 2021 - 2024 youlai.tech All Rights Reserved. 有来技术
+        版权所有
+      </p>
+      <p>皖ICP备20006496号-3</p>
+    </div>
   </div>
 </template>
 
-<script lang="ts" setup>
-import { useUserStore } from "@/store/modules/user";
+<script setup lang="ts">
+import { useSettingsStore, useUserStore } from "@/store";
+import { getCaptchaApi } from "@/api/auth";
 import { LoginData } from "@/api/auth/types";
-import type { FormInstance } from "element-plus";
-import router from "@/router";
-import { ref, computed } from "vue";
-// LocationQuery: 代表路由查询参数的类型。
-// LocationQueryValue: 代表路由查询参数值的类型。
-// useRoute: 是一个 Vue Composition API 的函数，用于获取当前路由的信息。
+import { Sunny, Moon } from "@element-plus/icons-vue";
 import { LocationQuery, LocationQueryValue, useRoute } from "vue-router";
+import router from "@/router";
+import defaultSettings from "@/settings";
+import { ThemeEnum } from "@/enums/ThemeEnum";
 
 // Stores
 const userStore = useUserStore();
+const settingsStore = useSettingsStore();
 
-const loginFormRef = ref<FormInstance | null>(null); // 登录表单ref
-const loginLoading = ref(false);
+// Internationalization
+const { t } = useI18n();
+
+// Reactive states
+const isDark = ref(settingsStore.theme === ThemeEnum.DARK);
+const icpVisible = ref(true);
+const loading = ref(false); // 按钮loading
+const isCapslock = ref(false); // 是否大写锁定
+const captchaBase64 = ref(); // 验证码图片Base64字符串
+const loginFormRef = ref(ElForm); // 登录表单ref
+const { height } = useWindowSize();
+
 const loginData = ref<LoginData>({
   username: "",
-  password: ""
+  password: "",
 });
 
-const loginDataRules = computed(() => {
+const loginRules = computed(() => {
   return {
-    //是不是必填项，校验失败之后的提示。触发方式，change和blur，change是发生数据变化就会触发校验
-    //blur是失去焦点触发校验
-    //支持复杂的校验和自定义逻辑的校验，一般情况下这种就够用了。真正复杂的校验逻辑在后端
-    //直接敲不触发校验规则，校验只有change的时候触发，就是发生变化的时候触发。
-    username: [{ required: true, message: "请填写用户名", trigger: "change" }],
-    password: [{ required: true, message: "请填写密码", trigger: "change" }]
+    username: [
+      {
+        required: true,
+        trigger: "blur",
+        message: t("login.message.username.required"),
+      },
+    ],
+    password: [
+      {
+        required: true,
+        trigger: "blur",
+        message: t("login.message.password.required"),
+      },
+      {
+        min: 6,
+        message: t("login.message.password.min"),
+        trigger: "blur",
+      },
+    ],
+    captchaCode: [
+      {
+        required: true,
+        trigger: "blur",
+        message: t("login.message.captchaCode.required"),
+      },
+    ],
   };
 });
 
-// const password = reactive([{}]);
-const route = useRoute();
+/**
+ * 获取验证码
+ */
+function getCaptcha() {
+  getCaptchaApi().then(({ data }) => {
+    loginData.value.captchaKey = data.captchaKey;
+    captchaBase64.value = data.captchaBase64;
+  });
+}
 
+/**
+ * 登录
+ */
+const route = useRoute();
 function handleLogin() {
-  if (loginFormRef.value) {
-    loginFormRef.value.validate((valid: boolean) => {
-      if (valid) {
-        console.log(loginData.value);
-        userStore
-          .login(loginData.value)
-          .then(() => {
-            console.log("登录成功");
-            // 获取的当前路由对象
-            const query: LocationQuery = route.query;
-            // 从 query 对象中获取 redirect 的值。如果 redirect 存在，则使用它的值；如果不存在或值为假值（如 null、undefined、0、false 等），则使用默认的 /。
-            const redirect = (query.redirect as LocationQueryValue) ?? "/";
-            //使用 reduce 方法来遍历 query 对象中的所有键，并构建一个新的对象 otherQueryParams。这个新对象包含除了 redirect 以外的所有查询参数和它们的值
-            const otherQueryParams = Object.keys(query).reduce((acc: any, cur: string) => {
+  loginFormRef.value.validate((valid: boolean) => {
+    if (valid) {
+      loading.value = true;
+      userStore
+        .login(loginData.value)
+        .then(() => {
+          const query: LocationQuery = route.query;
+          const redirect = (query.redirect as LocationQueryValue) ?? "/";
+          const otherQueryParams = Object.keys(query).reduce(
+            (acc: any, cur: string) => {
               if (cur !== "redirect") {
                 acc[cur] = query[cur];
               }
               return acc;
-            }, {});
+            },
+            {}
+          );
 
-            router.push({ path: redirect, query: otherQueryParams });
-          })
-          .catch(() => {
-            console.log("登录失败");
-          })
-          .finally(() => {
-            console.log("finally");
-          });
-      } else {
-        console.log("error submit!!");
-        return false;
-      }
-    });
+          router.push({ path: redirect, query: otherQueryParams });
+        })
+        .catch(() => {
+          getCaptcha();
+        })
+        .finally(() => {
+          loading.value = false;
+        });
+    }
+  });
+}
+
+/**
+ * 主题切换
+ */
+
+const toggleTheme = () => {
+  const newTheme =
+    settingsStore.theme === ThemeEnum.DARK ? ThemeEnum.LIGHT : ThemeEnum.DARK;
+  settingsStore.changeTheme(newTheme);
+};
+/**
+ * 根据屏幕宽度切换设备模式
+ */
+
+watchEffect(() => {
+  if (height.value < 600) {
+    icpVisible.value = false;
+  } else {
+    icpVisible.value = true;
+  }
+});
+
+/**
+ * 检查输入大小写
+ */
+function checkCapslock(event: KeyboardEvent) {
+  // 防止浏览器密码自动填充时报错
+  if (event instanceof KeyboardEvent) {
+    isCapslock.value = event.getModifierState("CapsLock");
   }
 }
+
+onMounted(() => {
+  getCaptcha();
+});
 </script>
 
 <style lang="scss" scoped>
-/*style中要加scoped,scoped用于各个页面之间的css属性的隔离，避免互相污染全局生效*/
+html.dark .login-container {
+  background: url("@/assets/images/login-bg-dark.jpg") no-repeat center right;
+}
+
 .login-container {
-  position: absolute; /*图片平铺开来*/
-  width: 100%; /*最外层已经是body，有一层vh和vw了，其实定义完最外层就可以了，login会继承*/
-  height: 100%;
-  background-image: url(../../assets/images/login-bg.jpg);
-  background-size: 100%;
+  overflow-y: auto;
+  background: url("@/assets/images/login-bg.jpg") no-repeat center right;
+
+  @apply wh-full flex-center;
+
+  .login-form {
+    padding: 30px 10px;
+  }
 }
 
-.login-card {
-  position: absolute;
-  left: 35%;
-  top: 35%;
-  width: 450px;
-  border-radius: 10px;
+.el-form-item {
+  background: var(--el-input-bg-color);
+  border: 1px solid var(--el-border-color);
+  border-radius: 5px;
 }
 
-.login-card-header {
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
-  text-align: center;
+:deep(.el-input) {
+  .el-input__wrapper {
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+
+    &.is-focus,
+    &:hover {
+      box-shadow: none !important;
+    }
+
+    input:-webkit-autofill {
+      /* 通过延时渲染背景色变相去除背景颜色 */
+      transition: background-color 1000s ease-in-out 0s;
+    }
+  }
 }
 </style>

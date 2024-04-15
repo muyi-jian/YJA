@@ -7,7 +7,7 @@ import {
   presetUno,
   presetWebFonts,
   transformerDirectives,
-  transformerVariantGroup
+  transformerVariantGroup,
 } from "unocss";
 
 export default defineConfig({
@@ -20,13 +20,13 @@ export default defineConfig({
     "flex-x-end": "flex items-center justify-end",
     "absolute-lt": "absolute left-0 top-0",
     "absolute-rt": "absolute right-0 top-0 ",
-    "fixed-lt": "fixed left-0 top-0"
+    "fixed-lt": "fixed left-0 top-0",
   },
   theme: {
     colors: {
       primary: "var(--el-color-primary)",
-      primary_dark: "var(--el-color-primary-light-5)"
-    }
+      primary_dark: "var(--el-color-primary-light-5)",
+    },
   },
   presets: [
     presetUno(),
@@ -36,8 +36,8 @@ export default defineConfig({
     presetWebFonts({
       fonts: {
         // ...
-      }
-    })
+      },
+    }),
   ],
-  transformers: [transformerDirectives(), transformerVariantGroup()]
+  transformers: [transformerDirectives(), transformerVariantGroup()],
 });

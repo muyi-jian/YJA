@@ -23,11 +23,12 @@ public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         int status = response.getStatus();
+        System.out.println("status======="+status);
         if (status == HttpServletResponse.SC_NOT_FOUND) {
             // 资源不存在
             ResponseUtils.writeErrMsg(response, ResponseEnum.REQUEST_RESOURCE_NOT_FOUND);
         } else {
-
+            authException.printStackTrace();
             if(authException instanceof BadCredentialsException){
                 // 用户名或密码错误
                 ResponseUtils.writeErrMsg(response, ResponseEnum.USERNAME_OR_PASSWORD_ERROR);

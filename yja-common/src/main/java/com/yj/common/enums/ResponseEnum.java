@@ -57,6 +57,7 @@ public enum ResponseEnum implements IResultCode, Serializable {
     VERIFY_CODE_MOBILE_TO_ERROR("B200004", "接收号码不合规"),
     VERIFY_CODE_MOBILE_LIMITED("B200005", "验证码发送过快"),
     VERIFY_CODE_CAPTCHA_ERROR("B30000", "图形验证码错误"),
+    VERIFY_CODE_CAPTCHA_TIMEOUT("B30001", "验证码已过期"),
 
     /* 手机 */
     MOBILE_NULL_ERROR("B400001", "手机号码不能为空"),

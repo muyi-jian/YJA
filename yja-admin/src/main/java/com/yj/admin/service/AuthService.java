@@ -1,5 +1,6 @@
 package com.yj.admin.service;
 
+import com.yj.core.model.dto.CaptchaResult;
 import com.yj.core.model.dto.LoginResult;
 
 /**
@@ -23,4 +24,5 @@ public interface AuthService {
      */
     void logout();
 
+    CaptchaResult captcha();
 }

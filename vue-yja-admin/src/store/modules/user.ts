@@ -1,35 +1,29 @@
 import { loginApi, logoutApi } from "@/api/auth";
-import { LoginData } from "@/api/auth/types";
-import { defineStore } from "pinia";
-import { UserInfo } from "@/api/user/types";
 import { getUserInfoApi } from "@/api/user";
 import { resetRouter } from "@/router";
+import { store } from "@/store";
+
+import { LoginData } from "@/api/auth/types";
+import { UserInfo } from "@/api/user/types";
 
 export const useUserStore = defineStore("user", () => {
   const user = ref<UserInfo>({
     roles: [],
-    perms: []
+    perms: [],
   });
+
+  /**
+   * 登录
+   *
+   * @param {LoginData}
+   * @returns
+   */
   function login(loginData: LoginData) {
     return new Promise<void>((resolve, reject) => {
       loginApi(loginData)
-        .then((resp) => {
-          const { tokenType, accessToken } = resp.data;
-          console.log(tokenType, accessToken);
-          localStorage.setItem("token", tokenType + " " + accessToken); // Bearer eyJhbGciOiJIUzI1NiJ9.xxx.xxx
-          resolve();
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
-  }
-  function logout() {
-    return new Promise<void>((resolve, reject) => {
-      logoutApi()
-        .then(() => {
-          localStorage.removeItem("token");
-          location.reload(); // 清空路由
+        .then((response) => {
+          const { tokenType, accessToken } = response.data;
+          localStorage.setItem("accessToken", tokenType + " " + accessToken); // Bearer eyJhbGciOiJIUzI1NiJ9.xxx.xxx
           resolve();
         })
         .catch((error) => {
@@ -59,20 +53,42 @@ export const useUserStore = defineStore("user", () => {
         });
     });
   }
+
+  // user logout
+  function logout() {
+    return new Promise<void>((resolve, reject) => {
+      logoutApi()
+        .then(() => {
+          localStorage.setItem("accessToken", "");
+          location.reload(); // 清空路由
+          resolve();
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+
   // remove token
   function resetToken() {
     console.log("resetToken");
     return new Promise<void>((resolve) => {
-      localStorage.setItem("token", "");
+      localStorage.setItem("accessToken", "");
       resetRouter();
       resolve();
     });
   }
+
   return {
     user,
     login,
-    logout,
     getUserInfo,
-    resetToken
+    logout,
+    resetToken,
   };
 });
+
+// 非setup
+export function useUserStoreHook() {
+  return useUserStore(store);
+}

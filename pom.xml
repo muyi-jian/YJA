@@ -60,6 +60,8 @@
         <jwt.version>4.3.0</jwt.version>
         <alibaba.fastjson.version>2.0.8</alibaba.fastjson.version>
         <fasterxml.jackson.version>2.13.0</fasterxml.jackson.version>
+        <easy.captcha.version>1.6.2</easy.captcha.version>
+        <nashorn.version>15.4</nashorn.version>
     </properties>
 
     <dependencyManagement>

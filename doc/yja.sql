@@ -65,6 +65,19 @@ CREATE TABLE yja_menu
     PRIMARY KEY (ID)
 ) COMMENT ='菜单管理';
 
+INSERT INTO yja_menu(REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME,id,parent_id,tree_path,name ,type ,path,component,perm,visible,sort ,icon,redirect,always_show ,keep_alive )
+VALUES (null,null,'2021-08-28 09:12:21',null, '2021-08-28 09:12:21',1, 0, '0', '系统管理', 2, '/system', 'Layout', NULL, 1, 1, 'system', '/system/user',  1, NULL);
+INSERT INTO yja_menu(REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME,id,parent_id,tree_path,name ,type ,path,component,perm,visible,sort ,icon,redirect,always_show ,keep_alive )
+VALUES (null,null,'2021-08-28 09:12:21',null, '2021-08-28 09:12:21',2, 1, '0,1', '用户管理', 1, 'user', 'system/user/index', NULL, 1, 1, 'user', NULL, 1, 1);
+INSERT INTO yja_menu(REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME,id,parent_id,tree_path,name ,type ,path,component,perm,visible,sort ,icon,redirect,always_show ,keep_alive )
+VALUES (null,null,'2021-08-28 09:12:21',null, '2021-08-28 09:12:21',3, 1, '0,1', '角色管理', 1, 'role', 'system/role/index', NULL, 1, 2, 'role', NULL, 1, 1);
+INSERT INTO yja_menu(REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME,id,parent_id,tree_path,name ,type ,path,component,perm,visible,sort ,icon,redirect,always_show ,keep_alive )
+VALUES (null,null,'2021-08-28 09:12:21',null, '2021-08-28 09:12:21',4, 1, '0,1', '菜单管理', 1, 'menu', 'system/menu/index', NULL, 1, 3, 'menu', NULL, 1, 1);
+INSERT INTO yja_menu(REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME,id,parent_id,tree_path,name ,type ,path,component,perm,visible,sort ,icon,redirect,always_show ,keep_alive )
+VALUES (null,null,'2021-08-28 09:12:21',null, '2021-08-28 09:12:21',5, 1, '0,1', '部门管理', 1, 'dept', 'system/dept/index', NULL, 1, 4, 'tree', NULL, 1, 1);
+INSERT INTO yja_menu(REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME,id,parent_id,tree_path,name ,type ,path,component,perm,visible,sort ,icon,redirect,always_show ,keep_alive )
+VALUES (null,null,'2021-08-28 09:12:21',null, '2021-08-28 09:12:21',6, 1, '0,1', '字典管理', 1, 'dict', 'system/dict/index', NULL, 1, 5, 'dict', NULL, 1, 1);
+
 
 DROP TABLE IF EXISTS yja_role;
 CREATE TABLE yja_role
@@ -85,6 +98,8 @@ CREATE TABLE yja_role
     PRIMARY KEY (ID)
 ) COMMENT = '角色表';
 
+INSERT INTO `yja_role` VALUES (0,'admin','2024-04-09 00:00:00','admin','2024-04-09 00:00:00',1, '管理员', 'admin', 1, 1, 0, 0, 0);
+
 -- ----------------------------
 -- Table structure for yja_user
 -- ----------------------------
@@ -99,10 +114,10 @@ create table yja_user
     ID                       varchar(32)                             not null comment 'ID'
         primary key,
     USERID                   varchar(255)                            not null comment '用户账号',
-    USERMAME                 varchar(255) collate utf8mb4_general_ci not null comment '用户名',
+    USERNAME                 varchar(255) collate utf8mb4_general_ci not null comment '用户名',
     NICK_NAME                varchar(255) collate utf8mb4_general_ci null comment '昵称',
     DEPT_ID                  varchar(32)                             null comment '部门ID',
-    PASSWORD                 varchar(32) collate utf8mb4_general_ci  not null comment '密码',
+    PASSWORD                 varchar(200) collate utf8mb4_general_ci  not null comment '密码',
     GENDER                   tinyint(1)                              null comment '性别;(1:男;2:女)',
     AVATAR                   varchar(100)                            null comment '头像',
     EMAIL                    varchar(60)                             null comment '邮箱',
@@ -128,6 +143,7 @@ create table yja_user
     DELETED                  tinyint(1) default 0                    null comment '是否删除;(0:否;1:是)'
 )
     comment '用户信息表';
+INSERT INTO `yja_user` VALUES (0,'admin','2024-04-09 00:00:00','admin','2024-04-09 00:00:00','1', 'admin', '系统管理员','系统管理员', '1', '$2a$10$xVWsNOhHrCxh5UbpCE7/HuJ.PAOKcYAqRxD2CO2nVnJS.IAXkr5aq', 1, 'https://oss.youlai.tech/youlai-boot/2023/05/16/811270ef31f548af9cffc026dfc3777b.gif', '123@qq.com', '2024-04-09', '15269173558', '', '',0,'2024-04-09','',0,'','','','',1,'','','',0,1,0,0);
 
 
 -- ----------------------------
@@ -143,10 +159,14 @@ CREATE TABLE yja_role_menu
     UPDATED_TIME DATETIME COMMENT '更新时间',
     ROLE_ID      VARCHAR(32) NOT NULL COMMENT '角色ID',
     MENU_ID      VARCHAR(32) NOT NULL COMMENT '菜单ID',
-    PRIMARY KEY (MENU_ID, ROLE_ID),
-    FOREIGN KEY (ROLE_ID) REFERENCES yja_role (ID),
-    FOREIGN KEY (MENU_ID) REFERENCES yja_menu (ID)
+    PRIMARY KEY (MENU_ID, ROLE_ID)
 ) COMMENT = '角色和菜单关联表';
+INSERT INTO `yja_role_menu`(ROLE_ID,MENU_ID) VALUES ('1', '1');
+INSERT INTO `yja_role_menu`(ROLE_ID,MENU_ID) VALUES ('1', '2');
+INSERT INTO `yja_role_menu`(ROLE_ID,MENU_ID) VALUES ('1', '3');
+INSERT INTO `yja_role_menu`(ROLE_ID,MENU_ID) VALUES ('1', '4');
+INSERT INTO `yja_role_menu`(ROLE_ID,MENU_ID) VALUES ('1', '5');
+
 
 -- ----------------------------
 -- Table structure for yja_user_role
@@ -160,7 +180,8 @@ CREATE TABLE yja_user_role
     UPDATED_TIME DATETIME COMMENT '更新时间',
     USER_ID      VARCHAR(32) NOT NULL COMMENT '用户ID',
     ROLE_ID      VARCHAR(32) NOT NULL COMMENT '角色ID',
-    PRIMARY KEY (USER_ID, ROLE_ID),
-    FOREIGN KEY (ROLE_ID) REFERENCES yja_role (ID),
-    FOREIGN KEY (USER_ID) REFERENCES yja_user (ID)
+    PRIMARY KEY (USER_ID, ROLE_ID)
 ) COMMENT = '用户和角色关联表';
+INSERT INTO `yja_user_role`(USER_ID,ROLE_ID) VALUES ('1', '1');
+
+SET FOREIGN_KEY_CHECKS = 1;
