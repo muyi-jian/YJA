@@ -25,7 +25,7 @@ public class UserFormBO {
     /**
      * 用户昵称
      */
-    private String nickname;
+    private String nickName;
 
     /**
      * 手机号
@@ -55,11 +55,11 @@ public class UserFormBO {
     /**
      * 部门ID
      */
-    private Long deptId;
+    private String deptId;
 
     /**
      * 角色ID集合
      */
-    private List<Long> roleIds;
+    private List<String> roleIds;
 
 }

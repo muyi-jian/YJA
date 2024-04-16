@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class RolePageVO {
 
     @Schema(description="角色ID")
-    private Long id;
+    private String id;
 
     @Schema(description="角色名称")
     private String name;
@@ -26,8 +26,8 @@ public class RolePageVO {
     private Integer sort;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime createTime;
+    private LocalDateTime createdTime;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime updateTime;
+    private LocalDateTime updatedTime;
 }

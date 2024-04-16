@@ -54,6 +54,12 @@ public class JWTutil {
             return null;
         }
     }
+    public static Date getExpires(String token){
+        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(secret)).build();
+        jwtVerifier.verify(token);//没报错说明验证成功
+        Date expiresAt = JWT.decode(token).getExpiresAt();
+        return expiresAt;
+    }
 
     /*
      * 刷新token

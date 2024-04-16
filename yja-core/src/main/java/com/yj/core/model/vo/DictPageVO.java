@@ -9,7 +9,7 @@ import lombok.Data;
 public class DictPageVO {
 
     @Schema(description="字典ID")
-    private Long id;
+    private String id;
 
     @Schema(description="字典名称")
     private String name;

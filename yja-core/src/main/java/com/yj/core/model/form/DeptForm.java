@@ -9,14 +9,14 @@ import lombok.Data;
 public class DeptForm {
 
     @Schema(description="部门ID")
-    private Long id;
+    private String id;
 
     @Schema(description="部门名称")
     private String name;
 
     @Schema(description="父部门ID")
     @NotNull(message = "父部门ID不能为空")
-    private Long parentId;
+    private String parentId;
 
     @Schema(description="状态(1:启用;0:禁用)")
     private Integer status;

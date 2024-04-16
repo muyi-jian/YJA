@@ -4,6 +4,7 @@ import com.yj.admin.service.AuthService;
 import com.yj.common.annotation.ResponseResultBody;
 import com.yj.core.model.dto.CaptchaResult;
 import com.yj.core.model.dto.LoginResult;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,15 @@ public class AuthController {
         System.out.println("authService.captcha()=="+authService.captcha());
         return authService.captcha();
     }
+
+
+    @Operation(summary = "注销")
+    @DeleteMapping("/logout")
+    public boolean logout() {
+        authService.logout();
+        return true;
+    }
+
     @GetMapping(value = "/test")
     public String test(){
         int i = 10/0;

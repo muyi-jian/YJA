@@ -15,7 +15,7 @@ public class UserImportVO {
     private String username;
 
     @ExcelProperty(value = "昵称")
-    private String nickname;
+    private String nickName;
 
     @ExcelProperty(value = "性别")
     private String genderLabel;

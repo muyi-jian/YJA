@@ -9,7 +9,7 @@ import lombok.Data;
 public class RoleForm {
 
     @Schema(description="角色ID")
-    private Long id;
+    private String id;
 
     @Schema(description="角色名称")
     @NotBlank(message = "角色名称不能为空")

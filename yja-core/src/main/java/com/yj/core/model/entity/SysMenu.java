@@ -21,7 +21,7 @@ public class SysMenu extends BaseEntity {
     /**
      * 父菜单ID
      */
-    private Long parentId;
+    private String parentId;
     /**
      * 父节点路径，以英文逗号(,)分割
      */

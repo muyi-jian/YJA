@@ -16,7 +16,7 @@ public class UserBO {
     /**
      * 用户ID
      */
-    private Long id;
+    private String id;
 
     /**
      * 账户名
@@ -26,7 +26,7 @@ public class UserBO {
     /**
      * 昵称
      */
-    private String nickname;
+    private String nickName;
 
     /**
      * 手机号
@@ -67,5 +67,5 @@ public class UserBO {
      * 创建时间
      */
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date createTime;
+    private Date createdTime;
 }

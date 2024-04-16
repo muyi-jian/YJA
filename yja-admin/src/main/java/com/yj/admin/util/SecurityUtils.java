@@ -41,8 +41,8 @@ public class SecurityUtils {
      *
      * @return Long
      */
-    public static Long getUserId() {
-        Long userId = Long.valueOf(getUser().getUserId()); // 直接将 Integer 转换为 Long
+    public static String getUserId() {
+        String userId = getUser().getUserId(); // 直接将 Integer 转换为 Long
         return userId;
     }
 
@@ -51,8 +51,8 @@ public class SecurityUtils {
      *
      * @return
      */
-    public static Long getDeptId() {
-        return  Long.valueOf(getUser().getDeptId()); // 直接将 Integer 转换为 Long;
+    public static String getDeptId() {
+        return  getUser().getDeptId(); // 直接将 Integer 转换为 Long;
     }
 
     /**

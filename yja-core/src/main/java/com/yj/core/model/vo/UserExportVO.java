@@ -21,7 +21,7 @@ public class UserExportVO {
     private String username;
 
     @ExcelProperty(value = "用户昵称")
-    private String nickname;
+    private String nickName;
 
     @ExcelProperty(value = "部门")
     private String deptName;
@@ -37,7 +37,7 @@ public class UserExportVO {
 
     @ExcelProperty(value = "创建时间")
     @DateTimeFormat("yyyy/MM/dd HH:mm:ss")
-    private LocalDateTime createTime;
+    private LocalDateTime createdTime;
 
 
 }

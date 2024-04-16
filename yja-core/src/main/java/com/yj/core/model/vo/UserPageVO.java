@@ -16,13 +16,13 @@ import java.util.Date;
 public class UserPageVO {
 
     @Schema(description="用户ID")
-    private Long id;
+    private String id;
 
     @Schema(description="用户名")
     private String username;
 
     @Schema(description="用户昵称")
-    private String nickname;
+    private String nickName;
 
     @Schema(description="手机号")
     private String mobile;

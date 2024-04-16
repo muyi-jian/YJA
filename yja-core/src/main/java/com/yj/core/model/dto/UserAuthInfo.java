@@ -18,7 +18,7 @@ public class UserAuthInfo {
 
     private String username;
 
-    private String nickname;
+    private String nickName;
 
     private String deptId;
 

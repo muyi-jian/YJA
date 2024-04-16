@@ -12,10 +12,10 @@ import java.util.List;
 public class DeptVO {
 
     @Schema(description = "部门ID")
-    private Long id;
+    private String id;
 
     @Schema(description = "父部门ID")
-    private Long parentId;
+    private String parentId;
 
     @Schema(description = "部门名称")
     private String name;
@@ -31,9 +31,9 @@ public class DeptVO {
 
     @Schema(description = "创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime createTime;
+    private LocalDateTime createdTime;
     @Schema(description = "修改时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    private LocalDateTime updateTime;
+    private LocalDateTime updatedTime;
 
 }

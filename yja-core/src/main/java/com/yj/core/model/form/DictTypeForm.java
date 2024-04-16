@@ -9,7 +9,7 @@ import lombok.Data;
 public class DictTypeForm {
 
     @Schema(description="字典类型ID")
-    private Long id;
+    private String id;
 
     @Schema(description="类型名称")
     private String name;

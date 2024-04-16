@@ -23,7 +23,7 @@ public class SysDept extends BaseEntity {
     /**
      * 父节点id
      */
-    private Long parentId;
+    private String parentId;
 
     /**
      * 父节点id路径

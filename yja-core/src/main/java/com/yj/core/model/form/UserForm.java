@@ -18,7 +18,7 @@ import java.util.List;
 public class UserForm {
 
     @Schema(description="用户ID")
-    private Long id;
+    private String id;
 
     @Schema(description="用户名")
     @NotBlank(message = "用户名不能为空")
@@ -26,7 +26,7 @@ public class UserForm {
 
     @Schema(description="昵称")
     @NotBlank(message = "昵称不能为空")
-    private String nickname;
+    private String nickName;
 
 
     @Schema(description="手机号码")
@@ -46,10 +46,10 @@ public class UserForm {
     private Integer status;
 
     @Schema(description="部门ID")
-    private Long deptId;
+    private String deptId;
 
     @Schema(description="角色ID集合")
     @NotEmpty(message = "用户角色不能为空")
-    private List<Long> roleIds;
+    private List<String> roleIds;
 
 }

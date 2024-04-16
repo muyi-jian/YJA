@@ -12,10 +12,10 @@ import java.util.List;
 public class MenuVO {
 
     @Schema(description = "菜单ID")
-    private Long id;
+    private String id;
 
     @Schema(description = "父菜单ID")
-    private Long parentId;
+    private String parentId;
 
     @Schema(description = "菜单名称")
     private String name;

@@ -36,6 +36,9 @@ create table yja_dept
     DELETED      tinyint(1) default 0                                          null comment '逻辑删除标识;(1:已删除;0:未删除)'
 ) comment '部门表';
 
+INSERT INTO yja_dept(REVISION, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME,ID,NAME,PARENT_ID,TREE_PATH,SORT,STATUS,DELETED)
+ VALUES (null,null,'2021-08-28 09:12:21',null, '2021-08-28 09:12:21','1', 'yja', '0', '0', 1, 1, 0);
+
 
 -- ----------------------------
 -- Table structure for yja_menu
