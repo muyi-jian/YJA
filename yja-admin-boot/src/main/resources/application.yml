@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://121.36.194.16:3306/yja?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: yj123456YJ..
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰命名和下划线命名的自动转换

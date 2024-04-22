@@ -18,6 +18,7 @@
         <option value="$PROJECT_DIR$/yja-notification/pom.xml" />
         <option value="$PROJECT_DIR$/yja-monitor/pom.xml" />
         <option value="$PROJECT_DIR$/yja-zipkin/pom.xml" />
+        <option value="$PROJECT_DIR$/yja-admin-boot/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
