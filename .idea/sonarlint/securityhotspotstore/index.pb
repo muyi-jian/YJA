@@ -206,8 +206,6 @@ F
 yja-admin-boot/pom.xml,2\d\2d67fd228f056dec6c96d288c1d9541712dbb8f7
 q
 Ayja-admin-boot/src/main/java/com/yja/YjaAdminBootApplication.java,3\0\3072c51ac2920f8d9ce557a9d621746c892117ba
-s
-Cyja-admin-boot/src/main/java/com/yja/controller/TestController.java,9\1\910a3025f4414277acc066d666d4f5870361eee6
 a
 1yja-admin-boot/src/main/resources/application.yml,3\b\3b4a43e440dfa84acd8a7d919bfc16e63f0c8c65
 h
@@ -254,3 +252,11 @@ o
 ?yja-admin-boot/src/main/java/com/yja/utils/ThreadLocalUtil.java,7\2\72b6edaf56cf5e5eb32b599dbcd31fdad367b6ac
 T
 $.idea/codeStyles/codeStyleConfig.xml,d\d\dd7b3350c29c49497756c7f32c69a3bed18b1cba
+w
+Gyja-admin-boot/src/main/java/com/yja/controller/CategoryController.java,1\c\1c1b548ded931603b1414cee63a4d88acb454a3b
+q
+Ayja-admin-boot/src/main/java/com/yja/service/CategoryService.java,a\8\a8ab45ece47f29a75faeca58d831960b5034fd24
+z
+Jyja-admin-boot/src/main/java/com/yja/service/impl/CategoryServiceImpl.java,7\8\78cf5d091955114731b226a3d78fb9b0b981a2e0
+o
+?yja-admin-boot/src/main/java/com/yja/mapper/CategoryMapper.java,c\0\c0da758e71a92a1bfe2ec727bcb75f493c300163
