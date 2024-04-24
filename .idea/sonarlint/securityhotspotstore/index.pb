@@ -260,3 +260,17 @@ z
 Jyja-admin-boot/src/main/java/com/yja/service/impl/CategoryServiceImpl.java,7\8\78cf5d091955114731b226a3d78fb9b0b981a2e0
 o
 ?yja-admin-boot/src/main/java/com/yja/mapper/CategoryMapper.java,c\0\c0da758e71a92a1bfe2ec727bcb75f493c300163
+p
+@yja-admin-boot/src/main/java/com/yja/service/ArticleService.java,2\d\2d2b02585afac49ad91619117234028c073831f9
+y
+Iyja-admin-boot/src/main/java/com/yja/service/impl/ArticleServiceImpl.java,5\f\5f9cdc7d25f07a46a916b65105d850792926f788
+n
+>yja-admin-boot/src/main/java/com/yja/mapper/ArticleMapper.java,c\a\ca0563bb18405042e171c43af1f42724015aa19b
+d
+4yja-admin-boot/src/main/java/com/yja/anno/State.java,f\b\fbc698677cf8d1abf2f815dc9ba8f664b97923d2
+t
+Dyja-admin-boot/src/main/java/com/yja/validation/StateValidation.java,6\9\69ca69ad7a275c5b244e9e6905e34bdf773f10b0
+y
+Iyja-admin-boot/src/main/java/com/yja/controller/FileUploadController.java,2\e\2e0acedb41471fd75818cbd771e0b759269e943d
+j
+:yja-admin-boot/src/main/java/com/yja/utils/AliOssUtil.java,1\4\14bb168ce012dd9e2807c6281ca4751fc4ef6ae4
