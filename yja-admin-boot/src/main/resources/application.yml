@@ -4,6 +4,10 @@ spring:
     url: jdbc:mysql://121.36.194.16:3306/yja?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&autoReconnect=true&allowMultiQueries=true
     username: root
     password: yj123456YJ..
+  data:
+    redis:
+      host: localhost
+      port: 6379
 mybatis:
   configuration:
     map-underscore-to-camel-case: true # 开启驼峰命名和下划线命名的自动转换

@@ -240,8 +240,6 @@ z
 Jyja-admin-boot/src/main/java/com/yja/exception/GlobalExceptionHandler.java,e\5\e569cc6451b2c1247e5e5ce1c6b9cf5948b13d13
 v
 Fyja-admin-boot/src/main/java/com/yja/controller/ArticleController.java,1\1\114c1bb05b89bc3160617562d47127b95a9f3b1d
-a
-1yja-admin-boot/src/test/java/com/yja/JwtTest.java,1\d\1de46b853830dbe7b34cf4c1d93fecfc284533cc
 g
 7yja-admin-boot/src/main/java/com/yja/utils/JwtUtil.java,3\e\3e1966163e84b33bd299f16257d0a38c6afe75a5
 v
