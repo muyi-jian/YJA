@@ -31,10 +31,10 @@
 
 ## 项目预览
 
-[1](https://github.com/muyi-jian/YJA/blob/master/doc/image/fenlei.png)
-[2](https://github.com/muyi-jian/YJA/blob/master/doc/image/wenzhang.png)
-[3](https://github.com/muyi-jian/YJA/blob/master/doc/image/jiben.png)
-[4](https://github.com/muyi-jian/YJA/blob/master/doc/image/touxiang.png)
+![1](https://github.com/muyi-jian/YJA/blob/master/doc/image/fenlei.png)
+![2](https://github.com/muyi-jian/YJA/blob/master/doc/image/wenzhang.png)
+![3](https://github.com/muyi-jian/YJA/blob/master/doc/image/jiben.png)
+![4](https://github.com/muyi-jian/YJA/blob/master/doc/image/touxiang.png)
 
 ## 源码
 
