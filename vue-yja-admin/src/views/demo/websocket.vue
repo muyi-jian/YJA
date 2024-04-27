@@ -153,7 +153,7 @@ onMounted(() => {
 
         <el-card class="mt-5">
           <el-form label-width="90px">
-            <el-form-item label="消息内容">
+            <el-form-item aria-label="消息内容">
               <el-input type="textarea" v-model="topicMessage" />
             </el-form-item>
 
@@ -165,10 +165,10 @@ onMounted(() => {
 
         <el-card class="mt-5">
           <el-form label-width="90px">
-            <el-form-item label="消息内容">
+            <el-form-item aria-label="消息内容">
               <el-input type="textarea" v-model="queneMessage" />
             </el-form-item>
-            <el-form-item label="消息接收人">
+            <el-form-item aria-label="消息接收人">
               <el-input v-model="receiver" />
             </el-form-item>
             <el-form-item>

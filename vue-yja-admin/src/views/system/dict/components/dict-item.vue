@@ -292,13 +292,13 @@ onMounted(() => {
         label-width="100px"
       >
         <el-form-item label="字典名称">{{ typeName }}</el-form-item>
-        <el-form-item label="字典名称" prop="name">
+        <el-form-item aria-label="字典名称" prop="name">
           <el-input v-model="formData.name" placeholder="请输入字典名称" />
         </el-form-item>
-        <el-form-item label="字典值" prop="value">
+        <el-form-item aria-label="字典值" prop="value">
           <el-input v-model="formData.value" placeholder="字典值" />
         </el-form-item>
-        <el-form-item label="排序" prop="sort">
+        <el-form-item aria-label="排序" prop="sort">
           <el-input-number
             v-model="formData.sort"
             controls-position="right"
@@ -311,7 +311,7 @@ onMounted(() => {
             <el-radio :label="0">停用</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="备注" prop="remark">
+        <el-form-item aria-label="备注" prop="remark">
           <el-input v-model="formData.remark" type="textarea" />
         </el-form-item>
       </el-form>

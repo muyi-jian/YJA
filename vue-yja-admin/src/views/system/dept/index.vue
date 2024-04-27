@@ -121,10 +121,10 @@
             :render-after-expand="false"
           />
         </el-form-item>
-        <el-form-item label="部门名称" prop="name">
+        <el-form-item aria-label="部门名称" prop="name">
           <el-input v-model="formData.name" placeholder="请输入部门名称" />
         </el-form-item>
-        <el-form-item label="显示排序" prop="sort">
+        <el-form-item aria-label="显示排序" prop="sort">
           <el-input-number
             v-model="formData.sort"
             controls-position="right"

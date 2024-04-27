@@ -327,11 +327,11 @@ onMounted(() => {
         :rules="rules"
         label-width="100px"
       >
-        <el-form-item label="角色名称" prop="name">
+        <el-form-item aria-label="角色名称" prop="name">
           <el-input v-model="formData.name" placeholder="请输入角色名称" />
         </el-form-item>
 
-        <el-form-item label="角色编码" prop="code">
+        <el-form-item aria-label="角色编码" prop="code">
           <el-input v-model="formData.code" placeholder="请输入角色编码" />
         </el-form-item>
 
@@ -351,7 +351,7 @@ onMounted(() => {
           </el-radio-group>
         </el-form-item>
 
-        <el-form-item label="排序" prop="sort">
+        <el-form-item aria-label="排序" prop="sort">
           <el-input-number
             v-model="formData.sort"
             controls-position="right"

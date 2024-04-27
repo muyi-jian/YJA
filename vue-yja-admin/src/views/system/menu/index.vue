@@ -164,7 +164,7 @@
           />
         </el-form-item>
 
-        <el-form-item label="菜单名称" prop="name">
+        <el-form-item aria-label="菜单名称" prop="name">
           <el-input v-model="formData.name" placeholder="请输入菜单名称" />
         </el-form-item>
 
@@ -265,7 +265,7 @@
           </el-radio-group>
         </el-form-item>
 
-        <el-form-item label="排序" prop="sort">
+        <el-form-item aria-label="排序" prop="sort">
           <el-input-number
             v-model="formData.sort"
             style="width: 100px"

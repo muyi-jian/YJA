@@ -278,10 +278,10 @@ onMounted(() => {
         :rules="rules"
         label-width="80px"
       >
-        <el-form-item label="字典名称" prop="name">
+        <el-form-item aria-label="字典名称" prop="name">
           <el-input v-model="formData.name" placeholder="请输入字典名称" />
         </el-form-item>
-        <el-form-item label="字典编码" prop="code">
+        <el-form-item aria-label="字典编码" prop="code">
           <el-input v-model="formData.code" placeholder="请输入字典编码" />
         </el-form-item>
         <el-form-item label="状态" prop="status">

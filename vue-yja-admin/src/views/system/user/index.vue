@@ -220,7 +220,7 @@
           />
         </el-form-item>
 
-        <el-form-item label="用户昵称" prop="nickname">
+        <el-form-item aria-label="用户昵称" prop="nickname">
           <el-input v-model="formData.nickname" placeholder="请输入用户昵称" />
         </el-form-item>
 
