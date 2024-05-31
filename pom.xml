@@ -20,7 +20,6 @@
     <modules>
         <module>yja-admin</module>
         <module>yja-utils</module>
-        <module>yja-core</module>
         <module>yja-web</module>
         <module>yja-gateway</module>
         <module>yja-picture</module>
