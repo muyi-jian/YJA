@@ -3,36 +3,20 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>16</source>
-                    <target>16</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    <modules>
-        <module>yja-admin</module>
-        <module>yja-utils</module>
-        <module>yja-web</module>
-        <module>yja-gateway</module>
-        <module>yja-picture</module>
-        <module>yja-search</module>
-        <module>yja-notification</module>
-        <module>yja-zipkin</module>
-        <module>yja-monitor</module>
-        <module>yja-common</module>
-    </modules>
 
     <groupId>com.yja</groupId>
     <artifactId>YJA</artifactId>
-   <version>1.0.0</version>
+    <version>1.0.0</version>
+    <!-- 多模块项目父工程打包模式必须指定为 pom -->
+    <packaging>pom</packaging>
+
+
+    <!-- 子模块管理 -->
+    <modules>
+
+    </modules>
+
+
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
