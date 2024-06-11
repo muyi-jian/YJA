@@ -71,8 +71,12 @@ const handleCommand = (command)=>{
     <!-- 左侧菜单 -->
     <el-aside width="200px">
       <div class="el-aside__logo"></div>
-      <el-menu active-text-color="#ffd04b" background-color="#232323"  text-color="#fff"
-               router>
+      <el-menu
+          active-text-color="#ffd04b"
+          background-color="#232323"
+          text-color="#fff"
+          router
+      >
         <el-menu-item index="/article/category">
           <el-icon>
             <Management />
@@ -117,6 +121,7 @@ const handleCommand = (command)=>{
     <el-container>
       <!-- 头部区域 -->
       <el-header>
+
         <div><strong>{{ userInfoStore.userInfo.nickname ? userInfoStore.userInfo.nickname : userInfoStore.userInfo.usrename }}</strong></div>
         <el-dropdown placement="bottom-end" @command="handleCommand">
                     <span class="el-dropdown__box">
