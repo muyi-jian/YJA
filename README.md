@@ -40,6 +40,9 @@
 
 [后端源码](https://github.com/muyi-jian/YJA/tree/master/yja-admin-boot)
 [前端源码](https://github.com/muyi-jian/YJA/tree/master/yja-admin-vue)
+## 技术选型
+### 前端相关技术
+### 后端相关技术
 
 
 ## 项目地址

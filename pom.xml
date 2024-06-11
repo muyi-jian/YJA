@@ -5,13 +5,6 @@
     <modelVersion>4.0.0</modelVersion>
 
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.0</version> <!-- lookup parent from repository -->
-        <relativePath/>
-    </parent>
-
     <groupId>com.yjastudy</groupId>
     <artifactId>YJA</artifactId>
     <version>${revision}</version>
@@ -23,6 +16,8 @@
     <modules>
         <!-- 入口模块 -->
         <module>yja-blog-web</module>
+        <module>yja-blog-common</module>
+        <module>yja-blog-admin</module>
     </modules>
 
 
@@ -36,10 +31,63 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
 
-
+        <!--spring-boot版本-->
+        <spring-boot.version>3.3.0</spring-boot.version>
+        <!--spring-cloud版本-->
+        <spring-cloud.version>2023.0.2</spring-cloud.version>
+        <!--spring-framework版本-->
+        <spring-framework.version>6.1.8</spring-framework.version>
+        <!--cloud-alibaba版本-->
+        <spring-cloud-alibaba.version>2023.0.1.0</spring-cloud-alibaba.version>
+        <!--lombok版本-->
+        <lombok.version>1.18.32</lombok.version>
+        <!--mapstruct版本-->
+        <mapstruct.version>1.6.0.Beta2</mapstruct.version>
     </properties>
     <!-- 统一依赖管理 -->
     <dependencyManagement>
+        <dependencies>
+            <!-- 定义 spring boot 版本 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 定义 spring cloud 版本 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 定义 spring cloud alibaba 版本 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- 定义spring framework 版本 -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring-framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Mapstruct 属性映射 -->
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-parent</artifactId>
+                <version>${mapstruct.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
 
     </dependencyManagement>
     <build>
