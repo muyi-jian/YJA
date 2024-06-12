@@ -9,11 +9,14 @@
     </parent>
     <groupId>com.yja</groupId>
     <artifactId>yja-blog-common</artifactId>
-    <version>${revision}</version>
     <name>yja-blog-common</name>
     <description>yja-blog-common</description>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -28,6 +31,22 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <!-- AOP 切面 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!-- Jackson -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.yja</groupId>
+            <artifactId>yja-blog-openapi-doc</artifactId>
+            <version>${revision}</version>
         </dependency>
     </dependencies>
 

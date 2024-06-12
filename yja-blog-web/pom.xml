@@ -12,7 +12,6 @@
 
     <groupId>com.yjastudy</groupId>
     <artifactId>yja-blog-web</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>yja-blog-web</name>
     <description>yja-blog-web(入口项目，负责博客前台展示相关功能，打包也放在这个模块负责)</description>
 
@@ -28,6 +27,11 @@
             <artifactId>yja-blog-common</artifactId>
             <version>${revision}</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.yja</groupId>-->
+<!--            <artifactId>yja-blog-openapi-doc</artifactId>-->
+<!--            <version>${revision}</version>-->
+<!--        </dependency>-->
         <!-- Web 依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -45,6 +49,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!--    数据校验    -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
     </dependencies>
 
