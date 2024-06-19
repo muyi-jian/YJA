@@ -48,6 +48,15 @@
             <artifactId>yja-blog-openapi-doc</artifactId>
             <version>${revision}</version>
         </dependency>
+        <!-- 常用工具库 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
     </dependencies>
 
 

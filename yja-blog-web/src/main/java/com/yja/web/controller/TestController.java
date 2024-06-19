@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 /**
  * @author Yang Jian
  * @date 2024/6/11 11:12
@@ -33,6 +37,10 @@ public class TestController {
     @PostMapping("/test1")
     @ApiOperationLog(description = "测试接口")
     public User test1(@RequestBody User user) {
+        // 设置三种日期字段值
+        user.setCreateTime(LocalDateTime.now());
+        user.setUpdateDate(LocalDate.now());
+        user.setTime(LocalTime.now());
         return user;
     }
 }

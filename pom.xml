@@ -46,10 +46,13 @@
         <mapstruct.version>1.6.0.Beta2</mapstruct.version>
         <!--jackson版本-->
         <jackson.version>2.17.1</jackson.version>
+        <guava.version>33.2.0-jre</guava.version>
+        <commons-lang3.version>3.14.0</commons-lang3.version>
         <!--knife4j版本-->
 <!--        <knife4j.version>4.5.0</knife4j.version>-->
         <!--springdoc-openapi版本-->
         <springdoc-openapi.version>2.5.0</springdoc-openapi.version>
+
     </properties>
     <!-- 统一依赖管理 -->
     <dependencyManagement>
@@ -106,6 +109,19 @@
                 <version>${springdoc-openapi.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!-- 常用工具库 -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
             </dependency>
             <!-- knife4j（API 文档工具） -->
 <!--            <dependency>-->

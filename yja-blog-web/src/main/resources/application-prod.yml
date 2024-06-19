@@ -1,2 +1,2 @@
 logging:
-  config: classpath:logback-yjablog.xml
+  config: classpath:logback-yjblog.xml

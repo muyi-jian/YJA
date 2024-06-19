@@ -12,9 +12,6 @@
     <artifactId>yja-blog-openapi-doc</artifactId>
     <name>yja-blog-openapi-doc</name>
     <description>yja-blog-openapi-doc</description>
-    <properties>
-        <java.version>17</java.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springdoc</groupId>

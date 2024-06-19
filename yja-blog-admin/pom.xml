@@ -9,12 +9,9 @@
     </parent>
     <groupId>com.yja</groupId>
     <artifactId>yja-blog-admin</artifactId>
-    <version>${revision}</version>
     <name>yja-blog-admin</name>
     <description>yja-blog-admin</description>
-    <properties>
-        <java.version>17</java.version>
-    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
